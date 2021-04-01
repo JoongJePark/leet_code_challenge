@@ -62,6 +62,11 @@ class TrappingRainWater1 {
         return sol;
     }
 
+    public int trap2(int[] height){
+
+        return 0;
+    }
+
     public static void main(String[] args) {
         TrappingRainWater1 solution = new TrappingRainWater1();
         int[] a = new int[10];
