@@ -28,17 +28,25 @@ public class MergeKSortedLists {
 
     public ListNode mergeKLists(ListNode[] lists) {
 
+        ListNode startNode = new ListNode();
+        smallestNode(startNode, lists);
+        return startNode;
     }
 
-    public void smallestNode(ListNode[] lists) {
-        int sol = lists[0].val;
+    public void smallestNode(ListNode listNode, ListNode[] lists) {
+        int sol = Integer.MIN_VALUE;
         int index = 0;
         for (int i = 0; i < lists.length; i++) {
-            if(sol > lists[i].val){
+            if(lists[i] != null && sol > lists[i].val){
                 sol = lists[i].val;
                 index = i;
             }
         }
-        lists[index].
+        if(lists[index].next != null){
+            lists[index] = lists[index].next;
+        }
+        listNode.val = sol;
+        listNode.next = new ListNode();
+        smallestNode(listNode.next, lists);
     }
 }
