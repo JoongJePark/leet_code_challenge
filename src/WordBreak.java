@@ -13,8 +13,6 @@ public class WordBreak {
             for (String word : wordDict) {
                 if (k >= word.length() && word.equals(s.substring(k - word.length(), k))) {
                     boolArr[k] = boolArr[k] || boolArr[k - word.length()];
-                    System.out.println(k - word.length());
-                    System.out.println(boolArr[k]);
                 }
             }
         }
