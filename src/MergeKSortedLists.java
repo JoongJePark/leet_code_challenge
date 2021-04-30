@@ -1,3 +1,5 @@
+import java.util.PriorityQueue;
+
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -27,26 +29,30 @@ public class MergeKSortedLists {
     }
 
     public ListNode mergeKLists(ListNode[] lists) {
-
-        ListNode startNode = new ListNode();
-        smallestNode(startNode, lists);
-        return startNode;
-    }
-
-    public void smallestNode(ListNode listNode, ListNode[] lists) {
-        int sol = Integer.MIN_VALUE;
-        int index = 0;
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
         for (int i = 0; i < lists.length; i++) {
-            if(lists[i] != null && sol > lists[i].val){
-                sol = lists[i].val;
-                index = i;
+            while (lists[i] != null) {
+                pq.add(lists[i].val);
+                lists[i] = lists[i].next;
             }
         }
-        if(lists[index].next != null){
-            lists[index] = lists[index].next;
+        System.out.println(pq);
+        if (pq.isEmpty()) {
+            return null;
         }
-        listNode.val = sol;
-        listNode.next = new ListNode();
-        smallestNode(listNode.next, lists);
+        ListNode startNode = new ListNode(pq.poll());
+        while (!pq.isEmpty()) {
+            ListNode nextNode = new ListNode(pq.poll());
+            startNode.next = nextNode;
+            nextNode= startNode;
+
+
+//            ListNode nextHead = head.next;
+//            head.next = sol;
+//            sol = head;
+//            //sol.val = head.next.val;
+//            head = nextHead;
+        }
+        return startNode;
     }
 }
