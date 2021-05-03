@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.PriorityQueue;
 
 /**
@@ -41,17 +42,11 @@ public class MergeKSortedLists {
             return null;
         }
         ListNode startNode = new ListNode(pq.poll());
+        ListNode nextNode = startNode;
         while (!pq.isEmpty()) {
-            ListNode nextNode = new ListNode(pq.poll());
-            startNode.next = nextNode;
-            nextNode= startNode;
-
-
-//            ListNode nextHead = head.next;
-//            head.next = sol;
-//            sol = head;
-//            //sol.val = head.next.val;
-//            head = nextHead;
+            ListNode newNode = new ListNode(pq.poll());
+            nextNode.next = newNode;
+            nextNode = nextNode.next;
         }
         return startNode;
     }
