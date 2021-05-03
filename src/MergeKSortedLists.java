@@ -37,7 +37,6 @@ public class MergeKSortedLists {
                 lists[i] = lists[i].next;
             }
         }
-        System.out.println(pq);
         if (pq.isEmpty()) {
             return null;
         }
