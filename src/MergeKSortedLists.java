@@ -11,6 +11,9 @@ import java.util.PriorityQueue;
  * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
+
+/* 두개 씩 하는거 왜 빠른지..?!
+ */
 public class MergeKSortedLists {
     public class ListNode {
         int val;
