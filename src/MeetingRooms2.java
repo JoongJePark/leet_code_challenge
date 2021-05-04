@@ -15,14 +15,14 @@ public class MeetingRooms2 {
         int end = 0;
         boolean[] check = new boolean[n];
         for(int i =0; i<n; i++){
-            if(check[i] == true){
+            if(check[i]){
                 continue;
             } else {
                 check[i] = true;
                 end = intervals[i][1];
             }
             for(int j=i+1; j<n; j++){
-                if(check[j] == true){
+                if(check[j]){
                     continue;
                 }
                 if(end<=intervals[j][0]){
