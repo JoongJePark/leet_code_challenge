@@ -3,6 +3,8 @@ import java.util.*;
 public class GroupAnagrams {
     public List<List<String>> groupAnagrams(String[] strs) {
         List<List<String>> sol = new ArrayList<>();
+// charArray sort 이용 NKlogK
+        //Todo: int[] 이용하면 NK
         if (strs.length == 0) {
             return new ArrayList();
         }
@@ -22,6 +24,8 @@ public class GroupAnagrams {
             sol.add(map.get(key));
         }
         return sol;
+
+// 내풀이 time limit
 //        HashMap<String, HashMap<Character, Integer>> map = new HashMap<>();
 //        HashMap<String, List<String>> map2 = new HashMap<>();
 //        boolean overlap = true;
