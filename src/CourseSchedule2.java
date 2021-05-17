@@ -2,27 +2,44 @@ import java.util.*;
 
 public class CourseSchedule2 {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
-        List<Integer> sol = new ArrayList<>(numCourses);
-        for (int i=0; i<numCourses; i++){
-            sol.add(i);
+        int[] sol = new int [numCourses];
+        int size = 0;
+        List<List<Integer>> myList = new ArrayList<>(numCourses);
+        int index;
+        int[] degree = new int[numCourses];
+        boolean[] check = new boolean[numCourses];
+        for (int i = 0; i < numCourses; i++) {
+            myList.add(new ArrayList<>());
         }
-        HashSet<int[]> set = new HashSet<>();
         for (int[] pre : prerequisites) {
-            set.add(pre);
+            myList.get(pre[0]).add(pre[1]);
+            degree[pre[0]] += 1;
         }
-        Collections.sort(sol, new Comparator<Integer>() {
-            @Override
-            public int compare(Integer a, Integer b) {
-                if(set.contains(new int[] {a,b})){
-                    return -1;
-                } else if(set.contains(new int[] {b,a})){
-                    return 1;
+        Queue<Integer> queue = new LinkedList<>();
+
+        while (size < numCourses) {
+            index = -1;
+            for (int i = 0; i < numCourses; i++) {
+                if (!check[i] && degree[i] == 0) {
+                    queue.add(i);
+                    check[i] = true;
+                    index=i;
                 }
-                return a-b;
             }
-        });
-        System.out.println(set);
-        int[] realSol = sol.stream().mapToInt(i->i).toArray();
-        return realSol;
+            if(index == -1 ) {
+                return new int[0];
+            }
+            while (!queue.isEmpty()) {
+                int a = queue.poll();
+                sol[size] = a;
+                size++;
+                for (int j = 0; j < myList.size(); j++) {
+                    if (myList.get(j).contains(a)){
+                        degree[j] -= 1;
+                    }
+                }
+            }
+        }
+        return sol;
     }
 }
